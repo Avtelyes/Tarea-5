@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:omp_is_initial_device/omp_is_initial_device.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:omp_get_team_num/omp_get_team_num.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:omp_get_num_teams/omp_get_num_teams.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:omp_get_num_devices/omp_get_num_devices.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:omp_get_default_device/omp_get_default_device.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:omp_set_default_device/omp_set_default_device.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:omp_get_proc_bind/omp_get_proc_bind.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:omp_in_final/omp_in_final.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:omp_get_active_level/omp_get_active_level.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:omp_get_team_size/omp_get_team_size.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:omp_get_ancestor_thread_num/omp_get_ancestor_thread_num.xcodeproj">
+   </FileRef>
+</Workspace>
