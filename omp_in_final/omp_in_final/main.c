@@ -6,6 +6,11 @@
 //  Copyright © 2015 Josue Garcia. All rights reserved.
 //
 
+/*
+ omp_in_final se usa para verificar si el proceso alcanzó el final de un task
+ En este ejemplo se tiene un thread que anuncia cuando acaba su task, se pueden poner cuantos threads se requieran
+*/
+
 #include <stdio.h>
 #include <omp.h>
 

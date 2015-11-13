@@ -6,6 +6,12 @@
 //  Copyright © 2015 Josue Garcia. All rights reserved.
 //
 
+/*
+ omp_get_ancestor_thread_num obtiene el id del padre de un determinado proceso en determinado nivel
+ En este ejemplo se determina el padre de 4 procesos que estan en el nivel 1 anidado
+*/
+
+
 #include <stdio.h>
 #include <omp.h>
 
@@ -18,7 +24,7 @@ int main(int argc, const char * argv[]) {
     {
         #pragma omp parallel for num_threads(4)
         for (i=0; i<16; i++)
-            printf("Task 1: thread %d children of %d\n",omp_get_thread_num(),
+            printf("Task 1: thread %d hijo de %d\n",omp_get_thread_num(),
                    omp_get_ancestor_thread_num(1));
     }
     

@@ -6,41 +6,59 @@
 //  Copyright © 2015 Josue Garcia. All rights reserved.
 //
 
+/*
+ omp_is_initial_device devuelve true si detecta que esta corriendo en el host o falso si en un device.
+ En este ejemplo se declaran 3 arreglos de los cuales 2 se llenan de numeros aleatorios y en el tercero se guarda la suma de los otros. En el ultimo paso se detecta si los calculos se hacen en el host o en algun device
+*/
+
 #include <stdlib.h>
 #include <omp.h>
 #include <stdio.h>
+#include <time.h>
 
+#define N 20
 
 int main(int argc, const char * argv[]) {
     
-    int a = 100;
-    int b = 0;
-    int c, d;
+    srand(time(NULL));
     
-    omp_set_default_device(4);
+    int *a = ( int * ) malloc( N * sizeof(int));
+    int *b = ( int * ) malloc( N * sizeof(int));
+    int *c = ( int * ) malloc( N * sizeof(int));
     
-    #pragma task
-    #pragma omp target
+    int size = N + 10;
+    int suma = 0;
+    int i;
+    
+    for(i = 0; i < N; ++i)
     {
-        c = omp_is_initial_device();
-        
-        printf("%d\n", c);
+        *(a + i) = rand() % 59 + 1;
+        *(b + i) = rand() % 39 + 1;
     }
     
-    
-    /* Create device buffers for a, b, c and transfer data from Host -> Device for a,b */
-    /*#pragma omp target data map(to:a[0:size], b[0:size]) map(from:c[0:size])
+    #pragma omp target data map(to:a[0:size], b[0:size]) map(from:c[0:size])
     {
-        printf("Estoy corriendo en el host: %d\n",omp_is_initial_device());
         #pragma omp target
         {
-            printf("Estoy corriendo en el host: %d\n",omp_is_initial_device());
-            int i;
+            if(omp_is_initial_device())
+                printf("Estoy procesando en el host...\n");
+            else
+                printf("Estoy procesando en el device...\n");
             #pragma omp parallel for
-            for (i = 0; i < 3; i++)
-                c[i] += i + 4;
+            for (i = 0; i < N; ++i)
+            {
+                *(c + i) = *(a + i) + *(b + i);
+                suma += *(c +i);
+            }
         }
-    }*/ /* Device -> Host data transfer of buffer c is done here*/
+    }
+
+    
+    printf("La operacion ha terminado, la suma es de: %d\n", suma);
+    
+    free(a);
+    free(b);
+    free(c);
     
     return 0;
 }

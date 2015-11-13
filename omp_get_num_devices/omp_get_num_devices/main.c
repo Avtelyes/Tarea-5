@@ -6,6 +6,11 @@
 //  Copyright © 2015 Josue Garcia. All rights reserved.
 //
 
+/*
+ omp_get_num_devices obtiene el numero de los target devices que hay
+ En este ejemplo se obtiene el numero de devices y se crean threads a partir de ellos para que trabajen
+*/
+
 #include <stdio.h>
 #include <omp.h>
 
@@ -15,10 +20,10 @@ int main(int argc, const char * argv[]) {
     
     #pragma omp parallel num_threads(dev + 1)
     {
-        tid = omp_get_thread_num();
+        int tid = omp_get_thread_num();
         #pragma omp target data device( tid )
         {
-            printf("Hola\n");
+            printf("Soy el thread %d procesando informacion...\n",tid);
         }
     }
     
